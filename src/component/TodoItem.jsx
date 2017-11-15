@@ -40,7 +40,7 @@ export default class TodoItem extends React.Component {
                 </li>
             ) :
             (
-                <TodoItemEdit value={this.props.todo.content} editTodo={this.editTodo.bind(this)} />
+                <TodoItemEdit originalValue={this.props.todo.content} value={''} editTodo={this.editTodo.bind(this)} />
             );
     }
 }

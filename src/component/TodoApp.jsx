@@ -1,6 +1,8 @@
 import React from 'react';
 import uuidV1 from 'uuid/v1';
 
+import '../../asserts/main.css';
+
 import TodoList from './TodoList.jsx';
 import AddTodo from './AddTodo.jsx';
 

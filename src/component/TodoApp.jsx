@@ -58,6 +58,7 @@ export default class TodoApp extends React.Component {
     render() {
         return (
             <div>
+                <h1 className="has-text-centered is-size-3">Todo App</h1>
                 <AddTodo
                     addTodo={this.addTodo.bind(this)}
                 />

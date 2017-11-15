@@ -29,25 +29,19 @@ export default class AddTodo extends React.Component {
     }
     render() {
         return (
-            <div className="todo-input">
-                <div className="field has-addons">
-                    <div className="control">
-                        <input
-                            className="input"
-                            type="text"
-                            placeholder="Add a todo"
-                            value={this.state.value}
-                            onChange={this.handleInput.bind(this)}
-                            onKeyDown={this.handleAdd.bind(this)}
-                        />
-                    </div>
-                    <div className="control">
-                        <a
-                            className="button is-success"
-                            onClick={this.handleAdd.bind(this)}
-                        >Add</a>
-                    </div>
-                </div>
+            <div className="todo-input is-clearfix">
+                <input
+                    className="input is-pulled-left"
+                    type="text"
+                    placeholder="Add a todo"
+                    value={this.state.value}
+                    onChange={this.handleInput.bind(this)}
+                    onKeyDown={this.handleAdd.bind(this)}
+                />
+                <a
+                    className="button is-success is-pulled-right"
+                    onClick={this.handleAdd.bind(this)}
+                >Add</a>
             </div>
         );
     }

@@ -4,7 +4,7 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 const PATHS = {
     app: path.join(__dirname, './src/app.js'),
-    dist: path.join(__dirname, './dist'),
+    dist: path.join(__dirname, './asserts'),
     contentBase: path.join(__dirname, './asserts'),
 }
 

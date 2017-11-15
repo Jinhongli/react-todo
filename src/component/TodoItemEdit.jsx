@@ -6,7 +6,7 @@ export default class TodoItemEdit extends React.Component {
         super(props);
         this.state = {
             value: this.props.value,
-            originalValue: this.props.value
+            originalValue: this.props.originalValue
         };
     }
 
@@ -29,6 +29,7 @@ export default class TodoItemEdit extends React.Component {
         return (
             <li className="todo-item is-clearfix" >
                 <input
+                    autoFocus
                     className="input is-small is-pulled-left"
                     type="text"
                     placeholder="Edit this todo"

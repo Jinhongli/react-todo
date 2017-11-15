@@ -421,7 +421,7 @@ exports = module.exports = __webpack_require__(34)(undefined);
 
 
 // module
-exports.push([module.i, ".todo-input {\r\n    margin-bottom: 20px;\r\n  }\r\n  .todo-input .input {\r\n    width: 80%;\r\n    border-radius: 5px;\r\n  }\r\n  .todo-input .button {\r\n    border-radius: 5px;\r\n  }\r\n  .todo-item {\r\n    padding: 2px 10px;\r\n  }\r\n  .todo-item .todo-item-check {\r\n    margin-right: 10px;\r\n  }\r\n  .todo-item .delete {\r\n    margin-right: 10px;\r\n  }\r\n  .todo-item.check {\r\n    text-decoration: line-through;\r\n    color: #999;\r\n  }\r\n  #root {\r\n    width: 360px;\r\n    margin: 100px auto;\r\n    border: 3px solid #2D4059;\r\n    border-radius: 10px;\r\n    padding: 10px;\r\n    background-color: #F5F5F5;\r\n  }\r\n  #root h1 {\r\n    margin-bottom: 20px;\r\n  }\r\n  ", ""]);
+exports.push([module.i, "#root {\r\n  width: 360px;\r\n  margin: 100px auto;\r\n  border: 3px solid #2D4059;\r\n  border-radius: 10px;\r\n  padding: 10px;\r\n  background-color: #F5F5F5;\r\n}\r\n\r\n#root h1 {\r\n  margin-bottom: 20px;\r\n}\r\n.todo-input {\r\n  margin-bottom: 20px;\r\n}\r\n\r\n.todo-input .input {\r\n  width: 80%;\r\n  border-radius: 5px;\r\n}\r\n\r\n.todo-input .button {\r\n  border-radius: 5px;\r\n}\r\n\r\n.todo-item {\r\n  margin: 2px 40px 2px 20px;\r\n  position: relative;\r\n}\r\n.todo-item.check {\r\n  text-decoration: line-through;\r\n  color: #999;\r\n}\r\n\r\n.todo-item .todo-item-check, .todo-item .delete {\r\n  margin-right: 10px;\r\n}\r\n\r\n.todo-item .input {\r\n  width: 100%;\r\n  border-radius: 5px;\r\n}\r\n\r\n.todo-item .button {\r\n  position: absolute;\r\n  right: 0;\r\n  bottom: 0;\r\n  border-radius: 5px;\r\n}", ""]);
 
 // exports
 
@@ -1139,7 +1139,7 @@ var TodoItem = function (_React$Component) {
                         _react2.default.createElement('i', { className: 'fa fa-pencil-square' })
                     )
                 )
-            ) : _react2.default.createElement(_TodoItemEdit2.default, { value: this.props.todo.content, editTodo: this.editTodo.bind(this) });
+            ) : _react2.default.createElement(_TodoItemEdit2.default, { originalValue: this.props.todo.content, value: '', editTodo: this.editTodo.bind(this) });
         }
     }]);
 
@@ -1182,57 +1182,52 @@ var TodoItemEdit = function (_React$Component) {
         var _this = _possibleConstructorReturn(this, (TodoItemEdit.__proto__ || Object.getPrototypeOf(TodoItemEdit)).call(this, props));
 
         _this.state = {
-            value: _this.props.value
+            value: _this.props.value,
+            originalValue: _this.props.originalValue
         };
         return _this;
     }
 
     _createClass(TodoItemEdit, [{
         key: "handleClick",
-        value: function handleClick() {
-            this.props.editTodo(this.state.value);
+        value: function handleClick(e) {
+            if (e.keyCode) {
+                if (e.keyCode === 13) {
+                    this.props.editTodo(this.state.value || this.state.originalValue);
+                }
+            } else {
+                this.props.editTodo(this.state.value || this.state.originalValue);
+            }
         }
     }, {
         key: "handleChange",
         value: function handleChange(e) {
-            if (e.target.value) {
-                this.setState({
-                    value: e.target.value
-                });
-            }
+            this.setState({
+                value: e.target.value
+            });
         }
     }, {
         key: "render",
         value: function render() {
             return _react2.default.createElement(
                 "li",
-                { className: "todo-item" },
+                { className: "todo-item is-clearfix" },
+                _react2.default.createElement("input", {
+                    autoFocus: true,
+                    className: "input is-small is-pulled-left",
+                    type: "text",
+                    placeholder: "Edit this todo",
+                    value: this.state.value,
+                    onChange: this.handleChange.bind(this),
+                    onKeyDown: this.handleClick.bind(this)
+                }),
                 _react2.default.createElement(
-                    "div",
-                    { className: "field has-addons" },
-                    _react2.default.createElement(
-                        "div",
-                        { className: "control" },
-                        _react2.default.createElement("input", {
-                            className: "input is-small",
-                            type: "text",
-                            placeholder: "Edit this todo",
-                            value: this.state.value,
-                            onChange: this.handleChange.bind(this)
-                        })
-                    ),
-                    _react2.default.createElement(
-                        "div",
-                        { className: "control" },
-                        _react2.default.createElement(
-                            "a",
-                            {
-                                className: "button is-success is-small",
-                                onClick: this.handleClick.bind(this)
-                            },
-                            "OK"
-                        )
-                    )
+                    "a",
+                    {
+                        className: "button is-primary is-small is-pulled-right",
+                        onClick: this.handleClick.bind(this)
+                    },
+                    _react2.default.createElement("i", { className: "fa fa-check" })
                 )
             );
         }
